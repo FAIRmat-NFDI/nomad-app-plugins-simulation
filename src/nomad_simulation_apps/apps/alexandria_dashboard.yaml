@@ -1,0 +1,340 @@
+widgets:
+  - type: periodictable
+    scale: linear
+    search_quantity: results.material.elements
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 11
+        w: 18
+        y: 0
+        x: 0
+      xl:
+        minH: 3
+        minW: 3
+        h: 12
+        w: 20
+        y: 0
+        x: 0
+      lg:
+        minH: 3
+        minW: 3
+        h: 10
+        w: 19
+        y: 0
+        x: 0
+      md:
+        minH: 3
+        minW: 3
+        h: 8
+        w: 14
+        y: 0
+        x: 0
+      sm:
+        minH: 3
+        minW: 3
+        h: 8
+        w: 12
+        y: 0
+        x: 0
+  - type: terms
+    show_input: true
+    scale: linear
+    search_quantity: results.material.symmetry.space_group_symbol
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 5
+        x: 18
+      xl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 6
+        x: 20
+      lg:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 10
+        x: 14
+      md:
+        minH: 3
+        minW: 3
+        h: 8
+        w: 4
+        y: 5
+        x: 14
+      sm:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 3
+        y: 8
+        x: 6
+  - type: terms
+    show_input: true
+    scale: linear
+    search_quantity: results.material.structural_type
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 5
+        y: 0
+        x: 23
+      xl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 0
+        x: 25
+      lg:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 5
+        y: 5
+        x: 19
+      md:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 4
+        y: 8
+        x: 0
+      sm:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 3
+        y: 8
+        x: 3
+  - type: terms
+    show_input: true
+    scale: linear
+    search_quantity: results.method.simulation.dft.xc_functional_names
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 5
+        y: 0
+        x: 18
+      xl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 0
+        x: 20
+      lg:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 5
+        y: 0
+        x: 19
+      md:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 4
+        y: 0
+        x: 14
+      sm:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 3
+        y: 8
+        x: 0
+  - type: histogram
+    show_input: true
+    autorange: false
+    nbins: 30
+    y:
+      scale: linear
+    x:
+      search_quantity: results.material.n_elements
+      scale: linear
+    title: Number of elements
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 8
+        y: 0
+        x: 28
+      xl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 12
+        y: 12
+        x: 0
+      lg:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 7
+        y: 10
+        x: 0
+      md:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 6
+        y: 8
+        x: 4
+      sm:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 6
+        y: 12
+        x: 0
+  - type: terms
+    show_input: true
+    scale: linear
+    search_quantity: results.material.symmetry.crystal_system
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 5
+        x: 23
+      xl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 6
+        x: 25
+      lg:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 5
+        y: 10
+        x: 19
+      md:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 4
+        y: 8
+        x: 10
+      sm:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 3
+        y: 8
+        x: 9
+  - type: histogram
+    show_input: true
+    autorange: false
+    nbins: 50
+    y:
+      scale: log
+    x:
+      title: Band gap
+      unit: electron_volt
+      search_quantity: results.properties.electronic.band_gap.value
+      scale: linear
+    title: Band gap
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 8
+        y: 5
+        x: 28
+      xl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 18
+        y: 12
+        x: 12
+      lg:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 7
+        y: 10
+        x: 7
+      md:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 6
+        y: 13
+        x: 0
+      sm:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 6
+        y: 12
+        x: 6
+  - type: histogram
+    show_input: true
+    autorange: true
+    nbins: 30
+    y:
+      scale: log
+    x:
+      search_quantity: results.material.topology.n_atoms
+      title: Number of atoms in the unit cell
+    title: Number of atoms
+    layout:
+      xxl:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 36
+        y: 11
+        x: 0
+      xl:
+        minH: 3
+        minW: 3
+        h: 6
+        w: 30
+        y: 18
+        x: 0
+      lg:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 24
+        y: 16
+        x: 0
+      md:
+        minH: 3
+        minW: 3
+        h: 5
+        w: 12
+        y: 13
+        x: 6
+      sm:
+        minH: 3
+        minW: 3
+        h: 4
+        w: 12
+        y: 16
+        x: 0
