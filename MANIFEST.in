@@ -1,2 +1,3 @@
 recursive-include * nomad_plugin.yaml
 graft src/nomad_simulation_apps/example_uploads
+include src/nomad_simulation_apps/apps/alexandria_dashboard.yaml

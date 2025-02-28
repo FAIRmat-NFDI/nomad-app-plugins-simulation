@@ -1,4 +1,4 @@
-from importlib.resources import files
+import os
 
 import yaml
 from nomad.config.models.ui import (
@@ -14,11 +14,9 @@ from nomad.config.models.ui import (
 )
 
 try:
-    yaml_path = files('nomad_simulation_apps.apps').joinpath(
-        'alexandria_dashboard.yaml'
-    )
-    with yaml_path.open('r') as additional_file:
-        widgets = yaml.safe_load(additional_file)
+    with open(os.path.join(os.path.dirname(__file__), 
+                           'alexandria_dashboard.yaml')) as widget_file:
+        widgets = yaml.safe_load(widget_file)
 except Exception as e:
     raise RuntimeError(f'Failed to load widgets from YAML file: {e}')
 
@@ -138,7 +136,7 @@ alexandria_app = App(
                 items=[
                     MenuItemTerms(
                         search_quantity='results.method.simulation.program_version',
-                        options=0,
+                        options=5,
                         show_input=False,
                     ),
                     MenuItemHistogram(
