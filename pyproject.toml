@@ -111,10 +111,7 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [project.entry-points.'nomad.plugin']
-
-
-
-app_entry_point = "nomad_simulation_apps.apps:app_entry_point"
+alexandria_app = "nomad_simulation_apps.apps:alexandria_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues
