@@ -31,6 +31,7 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/FAIRmat-NFDI/nomad-app-plugins-simulation"
+Documentation = "https://fairmat-nfdi.github.io/nomad-app-plugins-simulation/"
 
 [project.optional-dependencies]
 dev = ["ruff", "pytest", "structlog"]
@@ -76,7 +77,7 @@ select = [
     "UP",
     # isort
     "I",
-    # pylint 
+    # pylint
     "PL",
 ]
 
