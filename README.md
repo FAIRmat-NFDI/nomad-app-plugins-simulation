@@ -4,6 +4,13 @@ A repository for housing NOMAD's collection of simulation app plugins.
 
 This `nomad` plugin was generated with `Cookiecutter` along with `@nomad`'s [`cookiecutter-nomad-plugin`](https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin) template.
 
+## Usage
+
+This package can be installed from PyPI:
+
+```sh
+pip install nomad-simulation-apps
+```
 
 ## Development
 
@@ -160,7 +167,7 @@ on the [PyPI documentation](https://packaging.python.org/en/latest/tutorials/pac
 
 ### Template update
 
-We use cruft to update the project based on template changes. A `cruft-update.yml` is included in Github workflows to automatically check for updates and create pull requests to apply updates. Follow the [instructions](https://github.blog/changelog/2022-05-03-github-actions-prevent-github-actions-from-creating-and-approving-pull-requests/) on how to enable Github Actions to create pull requests. 
+We use cruft to update the project based on template changes. A `cruft-update.yml` is included in Github workflows to automatically check for updates and create pull requests to apply updates. Follow the [instructions](https://github.blog/changelog/2022-05-03-github-actions-prevent-github-actions-from-creating-and-approving-pull-requests/) on how to enable Github Actions to create pull requests.
 
 To run the check for updates locally, follow the instructions on [`cruft` website](https://cruft.github.io/cruft/#updating-a-project).
 
