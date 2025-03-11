@@ -15,7 +15,7 @@ classifiers = [
 ]
 name = "nomad-simulation-apps"
 description = "A repository for housing NOMAD's collection of simulation app plugins."
-version = "0.1.0"
+dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
@@ -32,6 +32,7 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/FAIRmat-NFDI/nomad-simulation-apps"
+Documentation = "https://fairmat-nfdi.github.io/nomad-app-plugins-simulation/"
 
 [project.optional-dependencies]
 dev = ["ruff", "pytest", "structlog"]
@@ -77,7 +78,7 @@ select = [
     "UP",
     # isort
     "I",
-    # pylint 
+    # pylint
     "PL",
 ]
 
@@ -109,6 +110,8 @@ package-dir = { "" = "src" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools_scm]
 
 [project.entry-points.'nomad.plugin']
 alexandria_app = "nomad_simulation_apps.apps:alexandria_entry_point"
