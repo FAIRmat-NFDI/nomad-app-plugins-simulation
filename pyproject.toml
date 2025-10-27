@@ -7,7 +7,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -17,7 +16,7 @@ name = "nomad-simulation-apps"
 description = "A repository for housing NOMAD's collection of simulation app plugins."
 version = "0.1.0"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [
     { name = "Martin Kuban", email = "kuban@physik.hu-berlin.de" },
 ]
@@ -34,7 +33,15 @@ dependencies = [
 Repository = "https://github.com/FAIRmat-NFDI/nomad-simulation-apps"
 
 [project.optional-dependencies]
-dev = ["ruff", "pytest", "structlog"]
+dev = [
+    "ruff",
+    "pytest",
+    "structlog",
+    "mkdocs",
+    "mkdocs-material==8.1.1",
+    "pymdown-extensions",
+    "mkdocs-click",
+]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
@@ -77,18 +84,22 @@ select = [
     "UP",
     # isort
     "I",
-    # pylint 
+    # pylint
     "PL",
 ]
 
 ignore = [
     "F403", # 'from module import *' used; unable to detect undefined names
+    "PLC0415", # `import` should be at the top-level of a file
 ]
 
 fixable = ["ALL"]
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["PLC0415"] # import-outside-top-level
 
 # this is entirely optional, you can remove this if you wish to
 [tool.ruff.format]
