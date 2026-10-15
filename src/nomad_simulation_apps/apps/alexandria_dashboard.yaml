@@ -2,7 +2,6 @@ widgets:
   - type: periodictable
     scale: linear
     search_quantity: results.material.elements
-    title: null
     layout:
       xxl:
         minH: 3
@@ -40,11 +39,9 @@ widgets:
         y: 0
         x: 0
   - type: terms
-    query_mode: null
     show_input: true
     scale: linear
     search_quantity: results.material.symmetry.space_group_symbol
-    title: null
     layout:
       xxl:
         minH: 3
@@ -82,11 +79,9 @@ widgets:
         y: 36
         x: 0
   - type: terms
-    query_mode: null
     show_input: true
     scale: linear
     search_quantity: results.material.structural_type
-    title: null
     layout:
       xxl:
         minH: 3
@@ -124,11 +119,9 @@ widgets:
         y: 18
         x: 0
   - type: terms
-    query_mode: null
     show_input: true
     scale: linear
     search_quantity: results.method.simulation.dft.xc_functional_names
-    title: null
     layout:
       xxl:
         minH: 3
@@ -173,8 +166,6 @@ widgets:
       scale: linear
     x:
       scale: linear
-      title: null
-      unit: null
       search_quantity: results.material.n_elements
     title: Number of elements
     layout:
@@ -214,11 +205,9 @@ widgets:
         y: 45
         x: 0
   - type: terms
-    query_mode: null
     show_input: true
     scale: linear
     search_quantity: results.material.symmetry.crystal_system
-    title: null
     layout:
       xxl:
         minH: 3
@@ -310,9 +299,7 @@ widgets:
     y:
       scale: log
     x:
-      scale: linear
       title: Number of atoms in the unit cell
-      unit: null
       search_quantity: results.material.topology.n_atoms
     title: Number of atoms
     layout:
