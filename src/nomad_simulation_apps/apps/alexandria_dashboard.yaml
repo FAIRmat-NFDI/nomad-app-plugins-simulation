@@ -34,7 +34,7 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 8
+        h: 9
         w: 12
         y: 0
         x: 0
@@ -74,10 +74,10 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 4
-        w: 3
-        y: 8
-        x: 6
+        h: 9
+        w: 12
+        y: 36
+        x: 0
   - type: terms
     show_input: true
     scale: linear
@@ -114,10 +114,10 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 4
-        w: 3
-        y: 8
-        x: 3
+        h: 9
+        w: 12
+        y: 18
+        x: 0
   - type: terms
     show_input: true
     scale: linear
@@ -154,9 +154,9 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 4
-        w: 3
-        y: 8
+        h: 9
+        w: 12
+        y: 9
         x: 0
   - type: histogram
     show_input: true
@@ -165,8 +165,8 @@ widgets:
     y:
       scale: linear
     x:
-      search_quantity: results.material.n_elements
       scale: linear
+      search_quantity: results.material.n_elements
     title: Number of elements
     layout:
       xxl:
@@ -200,9 +200,9 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 4
-        w: 6
-        y: 12
+        h: 12
+        w: 12
+        y: 45
         x: 0
   - type: terms
     show_input: true
@@ -240,10 +240,10 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 4
-        w: 3
-        y: 8
-        x: 9
+        h: 9
+        w: 12
+        y: 27
+        x: 0
   - type: histogram
     show_input: true
     autorange: false
@@ -251,10 +251,10 @@ widgets:
     y:
       scale: log
     x:
+      scale: linear
       title: Band gap
       unit: electron_volt
       search_quantity: results.properties.electronic.band_gap.value
-      scale: linear
     title: Band gap
     layout:
       xxl:
@@ -288,10 +288,10 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 4
-        w: 6
-        y: 12
-        x: 6
+        h: 12
+        w: 12
+        y: 69
+        x: 0
   - type: histogram
     show_input: true
     autorange: true
@@ -299,8 +299,8 @@ widgets:
     y:
       scale: log
     x:
-      search_quantity: results.material.topology.n_atoms
       title: Number of atoms in the unit cell
+      search_quantity: results.material.topology.n_atoms
     title: Number of atoms
     layout:
       xxl:
@@ -334,7 +334,8 @@ widgets:
       sm:
         minH: 3
         minW: 3
-        h: 4
+        h: 12
         w: 12
-        y: 16
+        y: 57
         x: 0
+
