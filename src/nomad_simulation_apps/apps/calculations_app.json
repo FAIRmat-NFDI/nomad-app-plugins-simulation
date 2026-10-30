@@ -1,0 +1,1018 @@
+{
+  "label": "Calculations",
+  "path": "calculations",
+  "category": "Theory",
+  "description": "Search calculations",
+  "readme": "This page allows you to search **calculations** within NOMAD. Calculations typically come from a specific simulation software that uses an approximate model to investigate and report different physical properties.",
+  "columns": [
+    {
+      "search_quantity": "results.material.chemical_formula_hill",
+      "selected": true,
+      "title": "Formula"
+    },
+    {
+      "search_quantity": "results.method.simulation.program_name",
+      "selected": true
+    },
+    {
+      "search_quantity": "results.method.method_name",
+      "selected": true
+    },
+    {
+      "search_quantity": "results.method.simulation.dft.xc_functional_type",
+      "selected": true
+    },
+    {
+      "search_quantity": "upload_create_time",
+      "selected": true,
+      "title": "Upload time"
+    },
+    {
+      "search_quantity": "authors",
+      "selected": true
+    },
+    {
+      "search_quantity": "results.method.simulation.precision.apw_cutoff"
+    },
+    {
+      "search_quantity": "results.method.simulation.precision.basis_set"
+    },
+    {
+      "search_quantity": "results.method.simulation.precision.k_line_density"
+    },
+    {
+      "search_quantity": "results.method.simulation.precision.native_tier"
+    },
+    {
+      "search_quantity": "results.method.simulation.precision.planewave_cutoff"
+    },
+    {
+      "search_quantity": "results.material.structural_type"
+    },
+    {
+      "search_quantity": "results.material.symmetry.crystal_system"
+    },
+    {
+      "search_quantity": "results.material.symmetry.space_group_symbol"
+    },
+    {
+      "search_quantity": "results.material.symmetry.space_group_number"
+    },
+    {
+      "search_quantity": "entry_name",
+      "title": "Name"
+    },
+    {
+      "search_quantity": "mainfile"
+    },
+    {
+      "search_quantity": "comment"
+    },
+    {
+      "search_quantity": "references"
+    },
+    {
+      "search_quantity": "datasets"
+    },
+    {
+      "search_quantity": "published",
+      "title": "Access"
+    }
+  ],
+  "menu": {
+    "title": "Filters",
+    "type": "menu",
+    "items": [
+      {
+        "title": "Material",
+        "type": "menu",
+        "size": "md"
+      },
+      {
+        "title": "Elements / Formula",
+        "type": "menu",
+        "size": "xxl",
+        "indentation": 1,
+        "items": [
+          {
+            "type": "periodic_table",
+            "search_quantity": "results.material.elements"
+          },
+          {
+            "search_quantity": "results.material.chemical_formula_hill",
+            "type": "terms",
+            "width": 6,
+            "options": 0
+          },
+          {
+            "search_quantity": "results.material.chemical_formula_iupac",
+            "type": "terms",
+            "width": 6,
+            "options": 0
+          },
+          {
+            "search_quantity": "results.material.chemical_formula_reduced",
+            "type": "terms",
+            "width": 6,
+            "options": 0
+          },
+          {
+            "search_quantity": "results.material.chemical_formula_anonymous",
+            "type": "terms",
+            "width": 6,
+            "options": 0
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.material.n_elements"
+            },
+            "y": {}
+          }
+        ]
+      },
+      {
+        "title": "Structure / Symmetry",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.material.structural_type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.material.symmetry.bravais_lattice",
+            "type": "terms",
+            "show_input": false,
+            "n_columns": 2
+          },
+          {
+            "search_quantity": "results.material.symmetry.crystal_system",
+            "type": "terms",
+            "show_input": false,
+            "n_columns": 2
+          },
+          {
+            "search_quantity": "results.material.symmetry.space_group_symbol",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "results.material.symmetry.structure_name",
+            "type": "terms",
+            "options": 5
+          },
+          {
+            "search_quantity": "results.material.symmetry.strukturbericht_designation",
+            "type": "terms"
+          },
+          {
+            "search_quantity": "results.material.symmetry.point_group",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "results.material.symmetry.hall_symbol",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "results.material.symmetry.prototype_aflow_id",
+            "type": "terms",
+            "options": 0
+          }
+        ]
+      },
+      {
+        "title": "Method",
+        "type": "menu",
+        "size": "md",
+        "items": [
+          {
+            "search_quantity": "results.method.simulation.program_name",
+            "type": "terms"
+          },
+          {
+            "search_quantity": "results.method.simulation.program_version",
+            "type": "terms",
+            "options": 0
+          }
+        ]
+      },
+      {
+        "title": "Precision",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.precision.k_line_density"
+            },
+            "y": {}
+          },
+          {
+            "search_quantity": "results.method.simulation.precision.native_tier",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "results.method.simulation.precision.basis_set",
+            "type": "terms",
+            "options": 5
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.precision.planewave_cutoff"
+            },
+            "y": {}
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.precision.apw_cutoff"
+            },
+            "y": {}
+          }
+        ]
+      },
+      {
+        "title": "DFT",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.method.method_name",
+            "type": "terms",
+            "show_input": false,
+            "show_header": false,
+            "options": {
+              "DFT": {
+                "label": "Search DFT entries"
+              }
+            },
+            "show_statistics": false
+          },
+          {
+            "search_quantity": "results.method.simulation.dft.xc_functional_type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.dft.xc_functional_names",
+            "type": "terms"
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.dft.exact_exchange_mixing_factor"
+            },
+            "y": {}
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.dft.hubbard_kanamori_model.u_effective"
+            },
+            "y": {}
+          },
+          {
+            "search_quantity": "results.method.simulation.dft.core_electron_treatment",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.dft.relativity_method",
+            "type": "terms",
+            "show_input": false
+          }
+        ]
+      },
+      {
+        "title": "TB",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.method.method_name",
+            "type": "terms",
+            "show_input": false,
+            "show_header": false,
+            "options": {
+              "TB": {
+                "label": "Search TB entries"
+              }
+            },
+            "show_statistics": false
+          },
+          {
+            "search_quantity": "results.method.simulation.tb.type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.tb.localization_type",
+            "type": "terms",
+            "show_input": false
+          }
+        ]
+      },
+      {
+        "title": "GW",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.method.method_name",
+            "type": "terms",
+            "show_input": false,
+            "show_header": false,
+            "options": {
+              "GW": {
+                "label": "Search GW entries"
+              }
+            },
+            "show_statistics": false
+          },
+          {
+            "search_quantity": "results.method.simulation.gw.type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.gw.starting_point_type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.gw.basis_set_type",
+            "type": "terms",
+            "show_input": false
+          }
+        ]
+      },
+      {
+        "title": "BSE",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.method.method_name",
+            "type": "terms",
+            "show_input": false,
+            "show_header": false,
+            "options": {
+              "BSE": {
+                "label": "Search BSE entries"
+              }
+            },
+            "show_statistics": false
+          },
+          {
+            "search_quantity": "results.method.simulation.bse.type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.bse.solver",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.bse.starting_point_type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.bse.starting_point_type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.bse.basis_set_type",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "search_quantity": "results.method.simulation.bse.gw_type",
+            "type": "terms",
+            "show_input": false
+          }
+        ]
+      },
+      {
+        "title": "DMFT",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.method.method_name",
+            "type": "terms",
+            "show_input": false,
+            "show_header": false,
+            "options": {
+              "DMFT": {
+                "label": "Search DMFT entries"
+              }
+            },
+            "show_statistics": false
+          },
+          {
+            "search_quantity": "results.method.simulation.dmft.impurity_solver_type",
+            "type": "terms",
+            "show_input": false,
+            "n_columns": 2
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.dmft.inverse_temperature"
+            },
+            "y": {}
+          },
+          {
+            "search_quantity": "results.method.simulation.dmft.magnetic_state",
+            "type": "terms",
+            "show_input": false
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.dmft.u"
+            },
+            "y": {}
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "results.method.simulation.dmft.jh"
+            },
+            "y": {}
+          },
+          {
+            "search_quantity": "results.method.simulation.dmft.analytical_continuation",
+            "type": "terms",
+            "show_input": false
+          }
+        ]
+      },
+      {
+        "title": "Workflow",
+        "type": "menu",
+        "size": "md"
+      },
+      {
+        "title": "Molecular dynamics",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.method.workflow_name",
+            "type": "terms",
+            "show_input": false,
+            "show_header": false,
+            "options": {
+              "MolecularDynamics": {
+                "label": "Search molecular dynamics entries"
+              }
+            },
+            "show_statistics": false
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.thermodynamic.trajectory",
+            "items": [
+              {
+                "search_quantity": "results.properties.thermodynamic.trajectory.available_properties",
+                "type": "terms",
+                "show_input": false,
+                "options": 4
+              },
+              {
+                "search_quantity": "results.properties.thermodynamic.trajectory.provenance.molecular_dynamics.ensemble_type",
+                "type": "terms",
+                "show_input": false,
+                "options": 2
+              },
+              {
+                "type": "histogram",
+                "x": {
+                  "search_quantity": "results.properties.thermodynamic.trajectory.provenance.molecular_dynamics.time_step"
+                },
+                "y": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Geometry Optimization",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.properties.available_properties",
+            "type": "terms",
+            "show_input": false,
+            "show_header": false,
+            "options": {
+              "geometry_optimization": {
+                "label": "Search geometry optimization entries"
+              }
+            },
+            "show_statistics": false
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.geometry_optimization",
+            "items": [
+              {
+                "type": "histogram",
+                "x": {
+                  "search_quantity": "results.properties.geometry_optimization.final_energy_difference"
+                },
+                "y": {}
+              },
+              {
+                "type": "histogram",
+                "x": {
+                  "search_quantity": "results.properties.geometry_optimization.final_force_maximum"
+                },
+                "y": {}
+              },
+              {
+                "type": "histogram",
+                "x": {
+                  "search_quantity": "results.properties.geometry_optimization.final_displacement_maximum"
+                },
+                "y": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Properties",
+        "type": "menu",
+        "size": "md"
+      },
+      {
+        "title": "Electronic",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.properties.available_properties",
+            "type": "terms",
+            "show_input": false,
+            "title": "Electronic properties",
+            "options": {
+              "electronic.band_structure_electronic.band_gap": {
+                "label": "Band gap"
+              },
+              "band_structure_electronic": {
+                "label": "Band structure"
+              },
+              "dos_electronic": {
+                "label": "Density of states"
+              },
+              "greens_functions_electronic": {
+                "label": "Green's functions"
+              },
+              "eels": {
+                "label": "Electron energy loss spectrum"
+              },
+              "density_charge": {
+                "label": "Charge density"
+              }
+            }
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.electronic.band_structure_electronic.band_gap",
+            "items": [
+              {
+                "search_quantity": "results.properties.electronic.band_structure_electronic.band_gap.type",
+                "type": "terms",
+                "show_input": false,
+                "options": 2
+              },
+              {
+                "type": "histogram",
+                "x": {
+                  "search_quantity": "results.properties.electronic.band_structure_electronic.band_gap.value"
+                },
+                "y": {}
+              }
+            ]
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.electronic.band_structure_electronic",
+            "items": [
+              {
+                "search_quantity": "results.properties.electronic.band_structure_electronic.spin_polarized",
+                "type": "terms",
+                "show_input": false
+              }
+            ]
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.electronic.dos_electronic",
+            "items": [
+              {
+                "search_quantity": "results.properties.electronic.dos_electronic.spin_polarized",
+                "type": "terms",
+                "show_input": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Vibrational",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.properties.available_properties",
+            "type": "terms",
+            "show_input": false,
+            "title": "Vibrational properties",
+            "options": {
+              "dos_phonon": {
+                "label": "Phonon density of states"
+              },
+              "band_structure_phonon": {
+                "label": "Phonon band structure"
+              },
+              "energy_free_helmholtz": {
+                "label": "Helmholtz free energy"
+              },
+              "heat_capacity_constant_volume": {
+                "label": "Heat capacity constant volume"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "title": "Mechanical",
+        "type": "menu",
+        "size": "md",
+        "indentation": 1,
+        "items": [
+          {
+            "search_quantity": "results.properties.available_properties",
+            "type": "terms",
+            "show_input": false,
+            "title": "Mechanical properties",
+            "options": {
+              "bulk_modulus": {
+                "label": "Bulk modulus"
+              },
+              "shear_modulus": {
+                "label": "Shear modulus"
+              },
+              "energy_volume_curve": {
+                "label": "Energy-volume curve"
+              }
+            }
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.mechanical.bulk_modulus",
+            "items": [
+              {
+                "search_quantity": "results.properties.mechanical.bulk_modulus.type",
+                "type": "terms"
+              },
+              {
+                "type": "histogram",
+                "x": {
+                  "search_quantity": "results.properties.mechanical.bulk_modulus.value"
+                },
+                "y": {}
+              }
+            ]
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.mechanical.shear_modulus",
+            "items": [
+              {
+                "search_quantity": "results.properties.mechanical.shear_modulus.type",
+                "type": "terms",
+                "show_input": false
+              },
+              {
+                "type": "histogram",
+                "x": {
+                  "search_quantity": "results.properties.mechanical.shear_modulus.value"
+                },
+                "y": {}
+              }
+            ]
+          },
+          {
+            "type": "nested_object",
+            "path": "results.properties.mechanical.energy_volume_curve",
+            "items": [
+              {
+                "search_quantity": "results.properties.mechanical.energy_volume_curve.type",
+                "type": "terms",
+                "options": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Author / Origin / Dataset",
+        "type": "menu",
+        "size": "lg",
+        "items": [
+          {
+            "search_quantity": "authors.name",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "type": "histogram",
+            "x": {
+              "search_quantity": "upload_create_time"
+            },
+            "y": {}
+          },
+          {
+            "search_quantity": "external_db",
+            "type": "terms",
+            "show_input": false,
+            "options": 5
+          },
+          {
+            "search_quantity": "datasets.dataset_name",
+            "type": "terms"
+          },
+          {
+            "search_quantity": "datasets.doi",
+            "type": "terms",
+            "options": 0
+          }
+        ]
+      },
+      {
+        "title": "Visibility / IDs / Schema",
+        "type": "menu",
+        "size": "md",
+        "items": [
+          {
+            "type": "visibility"
+          },
+          {
+            "search_quantity": "entry_id",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "upload_id",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "upload_name",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "results.material.material_id",
+            "type": "terms",
+            "options": 0
+          },
+          {
+            "search_quantity": "datasets.dataset_id",
+            "type": "terms",
+            "options": 0
+          }
+        ]
+      }
+    ]
+  },
+  "dashboard": {
+    "widgets": [
+      {
+        "type": "periodic_table",
+        "search_quantity": "results.material.elements",
+        "layout": {
+          "lg": {
+            "h": 11,
+            "w": 14,
+            "x": 0,
+            "y": 0
+          },
+          "md": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 0
+          },
+          "sm": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 0
+          },
+          "xl": {
+            "h": 11,
+            "w": 14,
+            "x": 0,
+            "y": 0
+          },
+          "xxl": {
+            "h": 9,
+            "w": 13,
+            "x": 0,
+            "y": 0
+          }
+        }
+      },
+      {
+        "search_quantity": "results.material.symmetry.space_group_symbol",
+        "type": "terms",
+        "layout": {
+          "lg": {
+            "h": 5,
+            "w": 5,
+            "x": 19,
+            "y": 6
+          },
+          "md": {
+            "h": 6,
+            "w": 6,
+            "x": 12,
+            "y": 8
+          },
+          "sm": {
+            "h": 5,
+            "w": 6,
+            "x": 6,
+            "y": 13
+          },
+          "xl": {
+            "h": 6,
+            "w": 6,
+            "x": 24,
+            "y": 5
+          },
+          "xxl": {
+            "h": 9,
+            "w": 6,
+            "x": 30,
+            "y": 0
+          }
+        }
+      },
+      {
+        "search_quantity": "results.material.structural_type",
+        "type": "terms",
+        "scale": "log",
+        "show_input": false,
+        "layout": {
+          "lg": {
+            "h": 6,
+            "w": 5,
+            "x": 19,
+            "y": 0
+          },
+          "md": {
+            "h": 6,
+            "w": 6,
+            "x": 0,
+            "y": 8
+          },
+          "sm": {
+            "h": 5,
+            "w": 6,
+            "x": 6,
+            "y": 8
+          },
+          "xl": {
+            "h": 11,
+            "w": 5,
+            "x": 19,
+            "y": 0
+          },
+          "xxl": {
+            "h": 9,
+            "w": 6,
+            "x": 19,
+            "y": 0
+          }
+        }
+      },
+      {
+        "search_quantity": "results.method.simulation.program_name",
+        "type": "terms",
+        "scale": "log",
+        "layout": {
+          "lg": {
+            "h": 6,
+            "w": 5,
+            "x": 14,
+            "y": 0
+          },
+          "md": {
+            "h": 8,
+            "w": 6,
+            "x": 12,
+            "y": 0
+          },
+          "sm": {
+            "h": 5,
+            "w": 6,
+            "x": 0,
+            "y": 8
+          },
+          "xl": {
+            "h": 11,
+            "w": 5,
+            "x": 14,
+            "y": 0
+          },
+          "xxl": {
+            "h": 9,
+            "w": 6,
+            "x": 13,
+            "y": 0
+          }
+        }
+      },
+      {
+        "search_quantity": "results.material.symmetry.crystal_system",
+        "type": "terms",
+        "show_input": false,
+        "layout": {
+          "lg": {
+            "h": 5,
+            "w": 5,
+            "x": 14,
+            "y": 6
+          },
+          "md": {
+            "h": 6,
+            "w": 6,
+            "x": 6,
+            "y": 8
+          },
+          "sm": {
+            "h": 5,
+            "w": 6,
+            "x": 0,
+            "y": 13
+          },
+          "xl": {
+            "h": 5,
+            "w": 6,
+            "x": 24,
+            "y": 0
+          },
+          "xxl": {
+            "h": 9,
+            "w": 5,
+            "x": 25,
+            "y": 0
+          }
+        }
+      }
+    ]
+  },
+  "filters_locked": {
+    "quantities": "results.method.simulation.program_name"
+  },
+  "search_syntaxes": {
+    "exclude": [
+      "free_text"
+    ]
+  },
+  "search_quantities": {
+    "exclude": [
+      "mainfile",
+      "entry_name",
+      "combine"
+    ]
+  }
+}
