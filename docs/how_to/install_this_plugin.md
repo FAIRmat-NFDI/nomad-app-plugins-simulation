@@ -6,10 +6,10 @@ This package will be available on PyPI soon.
 
 ## Development
 
-If you want to develop this module locally, clone the project and in the plugin folder, create a virtual environment (you can use Python 3.9, 3.10, or 3.11):
+If you want to develop this module locally, clone the project and in the plugin folder, create a virtual environment (you can use Python 3.10 or newer):
 ```sh
-git clone https://github.com/FAIRmat-NFDI/nomad-app-plugins-simulation
-cd nomad-simulation-apps
+git clone https://github.com/FAIRmat-NFDI/nomad-app-plugins-simulation.git
+cd nomad-app-plugins-simulation
 python3.11 -m venv .pyenv
 . .pyenv/bin/activate
 ```

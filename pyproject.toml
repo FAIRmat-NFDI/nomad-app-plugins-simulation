@@ -7,7 +7,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -15,9 +14,9 @@ classifiers = [
 ]
 name = "nomad-simulation-apps"
 description = "A repository for housing NOMAD's collection of simulation app plugins."
-version = "0.1.3"
+dynamic = ["version"]
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [
     { name = "Martin Kuban", email = "kuban@physik.hu-berlin.de" },
 ]
@@ -26,12 +25,12 @@ maintainers = [
 ]
 license = { file = "LICENSE" }
 dependencies = [
-    "nomad-lab>=1.3.0",
+    "nomad-lab>=1.4.0",
     "python-magic-bin; sys_platform == 'win32'",
 ]
 
 [project.urls]
-Repository = "https://github.com/FAIRmat-NFDI/nomad-simulation-apps"
+Repository = "https://github.com/FAIRmat-NFDI/nomad-app-plugins-simulation"
 
 [project.optional-dependencies]
 dev = ["ruff", "pytest", "structlog"]
@@ -111,8 +110,11 @@ package-dir = { "" = "src" }
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools_scm]
+
 [project.entry-points.'nomad.plugin']
 alexandria_app = "nomad_simulation_apps.apps:alexandria_entry_point"
+simulations_app = "nomad_simulation_apps.apps:simulations_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues
