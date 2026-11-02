@@ -1,7 +1,7 @@
 from nomad.config.models.plugins import AppEntryPoint
 
 from nomad_simulation_apps.apps.alexandria_app import alexandria_app
-from nomad_simulation_apps.apps.calculations_app import calculations_app
+from nomad_simulation_apps.apps.simulations_app import simulations_app
 
 alexandria_entry_point = AppEntryPoint(
     name='Alexandria',
@@ -9,8 +9,8 @@ alexandria_entry_point = AppEntryPoint(
     app=alexandria_app,
 )
 
-calculations_entry_point = AppEntryPoint(
-    name='Calculations',
-    description='Explore simulation calculations within NOMAD.',
-    app=calculations_app,
+simulations_entry_point = AppEntryPoint(
+    name='Simulations',
+    description='Explore simulations within NOMAD.',
+    app=simulations_app,
 )

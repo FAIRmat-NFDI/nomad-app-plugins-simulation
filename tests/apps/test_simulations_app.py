@@ -2,7 +2,7 @@ import hashlib
 import json
 from importlib.resources import files
 
-from nomad_simulation_apps.apps import calculations_entry_point
+from nomad_simulation_apps.apps import simulations_entry_point
 
 EXPECTED_COLUMN_QUANTITIES = [
     'results.material.chemical_formula_hill',
@@ -81,23 +81,23 @@ def _get_menu_leaves(items: list[dict]) -> list[tuple[str, str]]:
     return leaves
 
 
-def test_calculations_entry_point_identity_and_scope():
-    app = calculations_entry_point.app
+def test_simulations_entry_point_identity_and_scope():
+    app = simulations_entry_point.app
 
-    assert calculations_entry_point.name == 'Calculations'
-    assert app.label == 'Calculations'
+    assert simulations_entry_point.name == 'Simulations'
+    assert app.label == 'Simulations'
     assert app.path == 'calculations'
     assert app.resource == 'entries'
     assert app.category == 'Theory'
-    assert app.description == 'Search calculations'
+    assert app.description == 'Search simulations'
     assert app.filters_locked == {
         'quantities': 'results.method.simulation.program_name'
     }
     assert app.search_quantities.exclude == ['mainfile', 'entry_name', 'combine']
 
 
-def test_calculations_columns_match_the_core_baseline():
-    columns = calculations_entry_point.app.columns
+def test_simulations_columns_match_the_core_baseline():
+    columns = simulations_entry_point.app.columns
 
     assert [column.search_quantity for column in columns] == (
         EXPECTED_COLUMN_QUANTITIES
@@ -107,8 +107,8 @@ def test_calculations_columns_match_the_core_baseline():
     )
 
 
-def test_calculations_menu_matches_the_core_baseline():
-    menu = calculations_entry_point.app.menu.model_dump(
+def test_simulations_menu_matches_the_core_baseline():
+    menu = simulations_entry_point.app.menu.model_dump(
         mode='json', exclude_none=True, warnings=False
     )
     leaves = _get_menu_leaves(menu['items'])
@@ -121,16 +121,16 @@ def test_calculations_menu_matches_the_core_baseline():
     assert digest == EXPECTED_MENU_DIGEST
 
 
-def test_calculations_dashboard_matches_the_core_baseline():
-    widgets = calculations_entry_point.app.dashboard.widgets
+def test_simulations_dashboard_matches_the_core_baseline():
+    widgets = simulations_entry_point.app.dashboard.widgets
 
     assert [(widget.type, widget.search_quantity) for widget in widgets] == (
         EXPECTED_WIDGETS
     )
 
 
-def test_calculations_config_uses_the_modern_app_schema():
-    config_path = files('nomad_simulation_apps.apps').joinpath('calculations_app.json')
+def test_simulations_config_uses_the_modern_app_schema():
+    config_path = files('nomad_simulation_apps.apps').joinpath('simulations_app.json')
     with config_path.open('r', encoding='utf-8') as config_file:
         config = json.load(config_file)
 

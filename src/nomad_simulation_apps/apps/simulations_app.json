@@ -1,9 +1,9 @@
 {
-  "label": "Calculations",
+  "label": "Simulations",
   "path": "calculations",
   "category": "Theory",
-  "description": "Search calculations",
-  "readme": "This page allows you to search **calculations** within NOMAD. Calculations typically come from a specific simulation software that uses an approximate model to investigate and report different physical properties.",
+  "description": "Search simulations",
+  "readme": "This page allows you to search **simulations** within NOMAD. Simulation entries typically come from software that uses an approximate model to investigate and report different physical properties.",
   "columns": [
     {
       "search_quantity": "results.material.chemical_formula_hill",
