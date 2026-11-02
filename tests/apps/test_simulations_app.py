@@ -1,8 +1,10 @@
 import hashlib
 import json
-from importlib.resources import files
+
+from nomad.config.models.ui import App, Column, Dashboard, Menu
 
 from nomad_simulation_apps.apps import simulations_entry_point
+from nomad_simulation_apps.apps.simulations_app import simulations_app
 
 EXPECTED_COLUMN_QUANTITIES = [
     'results.material.chemical_formula_hill',
@@ -129,14 +131,11 @@ def test_simulations_dashboard_matches_the_core_baseline():
     )
 
 
-def test_simulations_config_uses_the_modern_app_schema():
-    config_path = files('nomad_simulation_apps.apps').joinpath('simulations_app.json')
-    with config_path.open('r', encoding='utf-8') as config_file:
-        config = json.load(config_file)
+def test_simulations_config_uses_python_app_models():
+    app = simulations_entry_point.app
 
-    assert 'filters' not in config
-    assert 'filter_menus' not in config
-    assert all('quantity' not in column for column in config['columns'])
-    assert all(
-        widget['type'] != 'periodictable' for widget in config['dashboard']['widgets']
-    )
+    assert app is simulations_app
+    assert isinstance(app, App)
+    assert all(isinstance(column, Column) for column in app.columns)
+    assert isinstance(app.menu, Menu)
+    assert isinstance(app.dashboard, Dashboard)

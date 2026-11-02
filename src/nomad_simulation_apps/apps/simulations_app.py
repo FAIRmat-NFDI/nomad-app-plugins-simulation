@@ -1,13 +1,929 @@
-import json
-from importlib.resources import files
+from nomad.config.models.ui import (
+    App,
+    Axis,
+    AxisScale,
+    Column,
+    Dashboard,
+    Layout,
+    Menu,
+    MenuItemHistogram,
+    MenuItemNestedObject,
+    MenuItemOption,
+    MenuItemPeriodicTable,
+    MenuItemTerms,
+    MenuItemVisibility,
+    SearchQuantities,
+    SearchSyntaxes,
+    WidgetPeriodicTable,
+    WidgetTerms,
+)
 
-from nomad.config.models.ui import App
-
-
-def _load_simulations_app() -> App:
-    config_path = files(__package__).joinpath('simulations_app.json')
-    with config_path.open('r', encoding='utf-8') as config_file:
-        return App.model_validate(json.load(config_file))
-
-
-simulations_app = _load_simulations_app()
+simulations_app = App(
+    label='Simulations',
+    path='calculations',
+    category='Theory',
+    description='Search simulations',
+    readme=(
+        'This page allows you to search **simulations** within NOMAD. '
+        'Simulation entries typically come from software that uses an approximate '
+        'model to investigate and report different physical properties.'
+    ),
+    columns=[
+        Column(
+            search_quantity='results.material.chemical_formula_hill',
+            selected=True,
+            title='Formula',
+        ),
+        Column(
+            search_quantity='results.method.simulation.program_name',
+            selected=True,
+        ),
+        Column(
+            search_quantity='results.method.method_name',
+            selected=True,
+        ),
+        Column(
+            search_quantity='results.method.simulation.dft.xc_functional_type',
+            selected=True,
+        ),
+        Column(
+            search_quantity='upload_create_time',
+            selected=True,
+            title='Upload time',
+        ),
+        Column(
+            search_quantity='authors',
+            selected=True,
+        ),
+        Column(
+            search_quantity='results.method.simulation.precision.apw_cutoff',
+        ),
+        Column(
+            search_quantity='results.method.simulation.precision.basis_set',
+        ),
+        Column(
+            search_quantity='results.method.simulation.precision.k_line_density',
+        ),
+        Column(
+            search_quantity='results.method.simulation.precision.native_tier',
+        ),
+        Column(
+            search_quantity='results.method.simulation.precision.planewave_cutoff',
+        ),
+        Column(
+            search_quantity='results.material.structural_type',
+        ),
+        Column(
+            search_quantity='results.material.symmetry.crystal_system',
+        ),
+        Column(
+            search_quantity='results.material.symmetry.space_group_symbol',
+        ),
+        Column(
+            search_quantity='results.material.symmetry.space_group_number',
+        ),
+        Column(
+            search_quantity='entry_name',
+            title='Name',
+        ),
+        Column(
+            search_quantity='mainfile',
+        ),
+        Column(
+            search_quantity='comment',
+        ),
+        Column(
+            search_quantity='references',
+        ),
+        Column(
+            search_quantity='datasets',
+        ),
+        Column(
+            search_quantity='published',
+            title='Access',
+        ),
+    ],
+    menu=Menu(
+        title='Filters',
+        items=[
+            Menu(
+                title='Material',
+                size='md',
+            ),
+            Menu(
+                title='Elements / Formula',
+                size='xxl',
+                indentation=1,
+                items=[
+                    MenuItemPeriodicTable(
+                        search_quantity='results.material.elements',
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.chemical_formula_hill',
+                        width=6,
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.chemical_formula_iupac',
+                        width=6,
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.chemical_formula_reduced',
+                        width=6,
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.chemical_formula_anonymous',
+                        width=6,
+                        options=0,
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.material.n_elements',
+                        ),
+                        y=AxisScale(),
+                    ),
+                ],
+            ),
+            Menu(
+                title='Structure / Symmetry',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.material.structural_type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.bravais_lattice',
+                        show_input=False,
+                        n_columns=2,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.crystal_system',
+                        show_input=False,
+                        n_columns=2,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.space_group_symbol',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.structure_name',
+                        options=5,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.strukturbericht_designation',
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.point_group',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.hall_symbol',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.symmetry.prototype_aflow_id',
+                        options=0,
+                    ),
+                ],
+            ),
+            Menu(
+                title='Method',
+                size='md',
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.program_name',
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.program_version',
+                        options=0,
+                    ),
+                ],
+            ),
+            Menu(
+                title='Precision',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.precision.k_line_density',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.precision.native_tier',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.precision.basis_set',
+                        options=5,
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.precision.planewave_cutoff',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.precision.apw_cutoff',
+                        ),
+                        y=AxisScale(),
+                    ),
+                ],
+            ),
+            Menu(
+                title='DFT',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.method.method_name',
+                        show_input=False,
+                        show_header=False,
+                        options={
+                            'DFT': MenuItemOption(
+                                label='Search DFT entries',
+                            ),
+                        },
+                        show_statistics=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.dft.xc_functional_type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.dft.xc_functional_names',
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.dft.exact_exchange_mixing_factor',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.dft.hubbard_kanamori_model.u_effective',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.dft.core_electron_treatment',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.dft.relativity_method',
+                        show_input=False,
+                    ),
+                ],
+            ),
+            Menu(
+                title='TB',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.method.method_name',
+                        show_input=False,
+                        show_header=False,
+                        options={
+                            'TB': MenuItemOption(
+                                label='Search TB entries',
+                            ),
+                        },
+                        show_statistics=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.tb.type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.tb.localization_type',
+                        show_input=False,
+                    ),
+                ],
+            ),
+            Menu(
+                title='GW',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.method.method_name',
+                        show_input=False,
+                        show_header=False,
+                        options={
+                            'GW': MenuItemOption(
+                                label='Search GW entries',
+                            ),
+                        },
+                        show_statistics=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.gw.type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.gw.starting_point_type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.gw.basis_set_type',
+                        show_input=False,
+                    ),
+                ],
+            ),
+            Menu(
+                title='BSE',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.method.method_name',
+                        show_input=False,
+                        show_header=False,
+                        options={
+                            'BSE': MenuItemOption(
+                                label='Search BSE entries',
+                            ),
+                        },
+                        show_statistics=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.bse.type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.bse.solver',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.bse.starting_point_type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.bse.starting_point_type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.bse.basis_set_type',
+                        show_input=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.bse.gw_type',
+                        show_input=False,
+                    ),
+                ],
+            ),
+            Menu(
+                title='DMFT',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.method.method_name',
+                        show_input=False,
+                        show_header=False,
+                        options={
+                            'DMFT': MenuItemOption(
+                                label='Search DMFT entries',
+                            ),
+                        },
+                        show_statistics=False,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.dmft.impurity_solver_type',
+                        show_input=False,
+                        n_columns=2,
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.dmft.inverse_temperature',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.dmft.magnetic_state',
+                        show_input=False,
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.dmft.u',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='results.method.simulation.dmft.jh',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.method.simulation.dmft.analytical_continuation',
+                        show_input=False,
+                    ),
+                ],
+            ),
+            Menu(
+                title='Workflow',
+                size='md',
+            ),
+            Menu(
+                title='Molecular dynamics',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.method.workflow_name',
+                        show_input=False,
+                        show_header=False,
+                        options={
+                            'MolecularDynamics': MenuItemOption(
+                                label='Search molecular dynamics entries',
+                            ),
+                        },
+                        show_statistics=False,
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.thermodynamic.trajectory',
+                        items=[
+                            MenuItemTerms(
+                                search_quantity='results.properties.thermodynamic.trajectory.available_properties',
+                                show_input=False,
+                                options=4,
+                            ),
+                            MenuItemTerms(
+                                search_quantity='results.properties.thermodynamic.trajectory.provenance.molecular_dynamics.ensemble_type',
+                                show_input=False,
+                                options=2,
+                            ),
+                            MenuItemHistogram(
+                                x=Axis(
+                                    search_quantity='results.properties.thermodynamic.trajectory.provenance.molecular_dynamics.time_step',
+                                ),
+                                y=AxisScale(),
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+            Menu(
+                title='Geometry Optimization',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.properties.available_properties',
+                        show_input=False,
+                        show_header=False,
+                        options={
+                            'geometry_optimization': MenuItemOption(
+                                label='Search geometry optimization entries',
+                            ),
+                        },
+                        show_statistics=False,
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.geometry_optimization',
+                        items=[
+                            MenuItemHistogram(
+                                x=Axis(
+                                    search_quantity='results.properties.geometry_optimization.final_energy_difference',
+                                ),
+                                y=AxisScale(),
+                            ),
+                            MenuItemHistogram(
+                                x=Axis(
+                                    search_quantity='results.properties.geometry_optimization.final_force_maximum',
+                                ),
+                                y=AxisScale(),
+                            ),
+                            MenuItemHistogram(
+                                x=Axis(
+                                    search_quantity='results.properties.geometry_optimization.final_displacement_maximum',
+                                ),
+                                y=AxisScale(),
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+            Menu(
+                title='Properties',
+                size='md',
+            ),
+            Menu(
+                title='Electronic',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.properties.available_properties',
+                        show_input=False,
+                        title='Electronic properties',
+                        options={
+                            (
+                                'electronic.band_structure_electronic.band_gap'
+                            ): MenuItemOption(
+                                label='Band gap',
+                            ),
+                            'band_structure_electronic': MenuItemOption(
+                                label='Band structure',
+                            ),
+                            'dos_electronic': MenuItemOption(
+                                label='Density of states',
+                            ),
+                            'greens_functions_electronic': MenuItemOption(
+                                label="Green's functions",
+                            ),
+                            'eels': MenuItemOption(
+                                label='Electron energy loss spectrum',
+                            ),
+                            'density_charge': MenuItemOption(
+                                label='Charge density',
+                            ),
+                        },
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.electronic.band_structure_electronic.band_gap',
+                        items=[
+                            MenuItemTerms(
+                                search_quantity='results.properties.electronic.band_structure_electronic.band_gap.type',
+                                show_input=False,
+                                options=2,
+                            ),
+                            MenuItemHistogram(
+                                x=Axis(
+                                    search_quantity='results.properties.electronic.band_structure_electronic.band_gap.value',
+                                ),
+                                y=AxisScale(),
+                            ),
+                        ],
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.electronic.band_structure_electronic',
+                        items=[
+                            MenuItemTerms(
+                                search_quantity='results.properties.electronic.band_structure_electronic.spin_polarized',
+                                show_input=False,
+                            ),
+                        ],
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.electronic.dos_electronic',
+                        items=[
+                            MenuItemTerms(
+                                search_quantity='results.properties.electronic.dos_electronic.spin_polarized',
+                                show_input=False,
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+            Menu(
+                title='Vibrational',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.properties.available_properties',
+                        show_input=False,
+                        title='Vibrational properties',
+                        options={
+                            'dos_phonon': MenuItemOption(
+                                label='Phonon density of states',
+                            ),
+                            'band_structure_phonon': MenuItemOption(
+                                label='Phonon band structure',
+                            ),
+                            'energy_free_helmholtz': MenuItemOption(
+                                label='Helmholtz free energy',
+                            ),
+                            'heat_capacity_constant_volume': MenuItemOption(
+                                label='Heat capacity constant volume',
+                            ),
+                        },
+                    ),
+                ],
+            ),
+            Menu(
+                title='Mechanical',
+                size='md',
+                indentation=1,
+                items=[
+                    MenuItemTerms(
+                        search_quantity='results.properties.available_properties',
+                        show_input=False,
+                        title='Mechanical properties',
+                        options={
+                            'bulk_modulus': MenuItemOption(
+                                label='Bulk modulus',
+                            ),
+                            'shear_modulus': MenuItemOption(
+                                label='Shear modulus',
+                            ),
+                            'energy_volume_curve': MenuItemOption(
+                                label='Energy-volume curve',
+                            ),
+                        },
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.mechanical.bulk_modulus',
+                        items=[
+                            MenuItemTerms(
+                                search_quantity='results.properties.mechanical.bulk_modulus.type',
+                            ),
+                            MenuItemHistogram(
+                                x=Axis(
+                                    search_quantity='results.properties.mechanical.bulk_modulus.value',
+                                ),
+                                y=AxisScale(),
+                            ),
+                        ],
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.mechanical.shear_modulus',
+                        items=[
+                            MenuItemTerms(
+                                search_quantity='results.properties.mechanical.shear_modulus.type',
+                                show_input=False,
+                            ),
+                            MenuItemHistogram(
+                                x=Axis(
+                                    search_quantity='results.properties.mechanical.shear_modulus.value',
+                                ),
+                                y=AxisScale(),
+                            ),
+                        ],
+                    ),
+                    MenuItemNestedObject(
+                        path='results.properties.mechanical.energy_volume_curve',
+                        items=[
+                            MenuItemTerms(
+                                search_quantity='results.properties.mechanical.energy_volume_curve.type',
+                                options=5,
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+            Menu(
+                title='Author / Origin / Dataset',
+                size='lg',
+                items=[
+                    MenuItemTerms(
+                        search_quantity='authors.name',
+                        options=0,
+                    ),
+                    MenuItemHistogram(
+                        x=Axis(
+                            search_quantity='upload_create_time',
+                        ),
+                        y=AxisScale(),
+                    ),
+                    MenuItemTerms(
+                        search_quantity='external_db',
+                        show_input=False,
+                        options=5,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='datasets.dataset_name',
+                    ),
+                    MenuItemTerms(
+                        search_quantity='datasets.doi',
+                        options=0,
+                    ),
+                ],
+            ),
+            Menu(
+                title='Visibility / IDs / Schema',
+                size='md',
+                items=[
+                    MenuItemVisibility(),
+                    MenuItemTerms(
+                        search_quantity='entry_id',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='upload_id',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='upload_name',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='results.material.material_id',
+                        options=0,
+                    ),
+                    MenuItemTerms(
+                        search_quantity='datasets.dataset_id',
+                        options=0,
+                    ),
+                ],
+            ),
+        ],
+    ),
+    search_quantities=SearchQuantities(
+        exclude=[
+            'mainfile',
+            'entry_name',
+            'combine',
+        ],
+    ),
+    dashboard=Dashboard(
+        widgets=[
+            WidgetPeriodicTable(
+                search_quantity='results.material.elements',
+                layout={
+                    'lg': Layout(
+                        h=11,
+                        w=14,
+                        x=0,
+                        y=0,
+                    ),
+                    'md': Layout(
+                        h=8,
+                        w=12,
+                        x=0,
+                        y=0,
+                    ),
+                    'sm': Layout(
+                        h=8,
+                        w=12,
+                        x=0,
+                        y=0,
+                    ),
+                    'xl': Layout(
+                        h=11,
+                        w=14,
+                        x=0,
+                        y=0,
+                    ),
+                    'xxl': Layout(
+                        h=9,
+                        w=13,
+                        x=0,
+                        y=0,
+                    ),
+                },
+            ),
+            WidgetTerms(
+                search_quantity='results.material.symmetry.space_group_symbol',
+                layout={
+                    'lg': Layout(
+                        h=5,
+                        w=5,
+                        x=19,
+                        y=6,
+                    ),
+                    'md': Layout(
+                        h=6,
+                        w=6,
+                        x=12,
+                        y=8,
+                    ),
+                    'sm': Layout(
+                        h=5,
+                        w=6,
+                        x=6,
+                        y=13,
+                    ),
+                    'xl': Layout(
+                        h=6,
+                        w=6,
+                        x=24,
+                        y=5,
+                    ),
+                    'xxl': Layout(
+                        h=9,
+                        w=6,
+                        x=30,
+                        y=0,
+                    ),
+                },
+            ),
+            WidgetTerms(
+                search_quantity='results.material.structural_type',
+                scale='log',
+                show_input=False,
+                layout={
+                    'lg': Layout(
+                        h=6,
+                        w=5,
+                        x=19,
+                        y=0,
+                    ),
+                    'md': Layout(
+                        h=6,
+                        w=6,
+                        x=0,
+                        y=8,
+                    ),
+                    'sm': Layout(
+                        h=5,
+                        w=6,
+                        x=6,
+                        y=8,
+                    ),
+                    'xl': Layout(
+                        h=11,
+                        w=5,
+                        x=19,
+                        y=0,
+                    ),
+                    'xxl': Layout(
+                        h=9,
+                        w=6,
+                        x=19,
+                        y=0,
+                    ),
+                },
+            ),
+            WidgetTerms(
+                search_quantity='results.method.simulation.program_name',
+                scale='log',
+                layout={
+                    'lg': Layout(
+                        h=6,
+                        w=5,
+                        x=14,
+                        y=0,
+                    ),
+                    'md': Layout(
+                        h=8,
+                        w=6,
+                        x=12,
+                        y=0,
+                    ),
+                    'sm': Layout(
+                        h=5,
+                        w=6,
+                        x=0,
+                        y=8,
+                    ),
+                    'xl': Layout(
+                        h=11,
+                        w=5,
+                        x=14,
+                        y=0,
+                    ),
+                    'xxl': Layout(
+                        h=9,
+                        w=6,
+                        x=13,
+                        y=0,
+                    ),
+                },
+            ),
+            WidgetTerms(
+                search_quantity='results.material.symmetry.crystal_system',
+                show_input=False,
+                layout={
+                    'lg': Layout(
+                        h=5,
+                        w=5,
+                        x=14,
+                        y=6,
+                    ),
+                    'md': Layout(
+                        h=6,
+                        w=6,
+                        x=6,
+                        y=8,
+                    ),
+                    'sm': Layout(
+                        h=5,
+                        w=6,
+                        x=0,
+                        y=13,
+                    ),
+                    'xl': Layout(
+                        h=5,
+                        w=6,
+                        x=24,
+                        y=0,
+                    ),
+                    'xxl': Layout(
+                        h=9,
+                        w=5,
+                        x=25,
+                        y=0,
+                    ),
+                },
+            ),
+        ],
+    ),
+    filters_locked={
+        'quantities': 'results.method.simulation.program_name',
+    },
+    search_syntaxes=SearchSyntaxes(
+        exclude=[
+            'free_text',
+        ],
+    ),
+)
