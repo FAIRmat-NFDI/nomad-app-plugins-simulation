@@ -25,7 +25,7 @@ with Path(__file__).with_name('simulations_dashboard.yaml').open() as dashboard_
 
 simulations_app = App(
     label='Simulations',
-    path='calculations',
+    path='simulations',
     category='Theory',
     description='Search simulations',
     readme=(

@@ -132,7 +132,7 @@ def test_simulations_entry_point_identity_and_scope():
 
     assert simulations_entry_point.name == 'Simulations'
     assert app.label == 'Simulations'
-    assert app.path == 'calculations'
+    assert app.path == 'simulations'
     assert app.resource == 'entries'
     assert app.category == 'Theory'
     assert app.description == 'Search simulations'
