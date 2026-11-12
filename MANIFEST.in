@@ -1,1 +1,2 @@
 include src/nomad_simulation_apps/apps/alexandria_dashboard.yaml
+include src/nomad_simulation_apps/apps/simulations_dashboard.yaml

@@ -62,6 +62,9 @@ EXPECTED_WIDGETS = [
     ('terms', 'results.method.simulation.program_name'),
     ('terms', 'results.material.symmetry.crystal_system'),
 ]
+EXPECTED_DASHBOARD_DIGEST = (
+    '002f53324223ddc34a6282813ad5cb8b97a1ec55e7b1f6d69b684194a565bb63'
+)
 
 
 def _get_menu_quantity(item: dict) -> str | None:
@@ -124,11 +127,20 @@ def test_simulations_menu_matches_the_core_baseline():
 
 
 def test_simulations_dashboard_matches_the_core_baseline():
-    widgets = simulations_entry_point.app.dashboard.widgets
+    dashboard = simulations_entry_point.app.dashboard
+    widgets = dashboard.widgets
 
     assert [(widget.type, widget.search_quantity) for widget in widgets] == (
         EXPECTED_WIDGETS
     )
+    digest = hashlib.sha256(
+        json.dumps(
+            dashboard.model_dump(mode='json', exclude_none=True, warnings=False),
+            sort_keys=True,
+            separators=(',', ':'),
+        ).encode()
+    ).hexdigest()
+    assert digest == EXPECTED_DASHBOARD_DIGEST
 
 
 def test_simulations_config_uses_python_app_models():

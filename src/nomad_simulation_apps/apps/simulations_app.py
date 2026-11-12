@@ -1,10 +1,12 @@
+from pathlib import Path
+
+import yaml
 from nomad.config.models.ui import (
     App,
     Axis,
     AxisScale,
     Column,
     Dashboard,
-    Layout,
     Menu,
     MenuItemHistogram,
     MenuItemNestedObject,
@@ -14,9 +16,12 @@ from nomad.config.models.ui import (
     MenuItemVisibility,
     SearchQuantities,
     SearchSyntaxes,
-    WidgetPeriodicTable,
-    WidgetTerms,
 )
+
+with Path(__file__).with_name('simulations_dashboard.yaml').open() as dashboard_file:
+    simulations_dashboard = Dashboard.model_validate(
+        {'widgets': yaml.safe_load(dashboard_file)}
+    )
 
 simulations_app = App(
     label='Simulations',
@@ -735,189 +740,7 @@ simulations_app = App(
             'combine',
         ],
     ),
-    dashboard=Dashboard(
-        widgets=[
-            WidgetPeriodicTable(
-                search_quantity='results.material.elements',
-                layout={
-                    'lg': Layout(
-                        h=11,
-                        w=14,
-                        x=0,
-                        y=0,
-                    ),
-                    'md': Layout(
-                        h=8,
-                        w=12,
-                        x=0,
-                        y=0,
-                    ),
-                    'sm': Layout(
-                        h=8,
-                        w=12,
-                        x=0,
-                        y=0,
-                    ),
-                    'xl': Layout(
-                        h=11,
-                        w=14,
-                        x=0,
-                        y=0,
-                    ),
-                    'xxl': Layout(
-                        h=9,
-                        w=13,
-                        x=0,
-                        y=0,
-                    ),
-                },
-            ),
-            WidgetTerms(
-                search_quantity='results.material.symmetry.space_group_symbol',
-                layout={
-                    'lg': Layout(
-                        h=5,
-                        w=5,
-                        x=19,
-                        y=6,
-                    ),
-                    'md': Layout(
-                        h=6,
-                        w=6,
-                        x=12,
-                        y=8,
-                    ),
-                    'sm': Layout(
-                        h=5,
-                        w=6,
-                        x=6,
-                        y=13,
-                    ),
-                    'xl': Layout(
-                        h=6,
-                        w=6,
-                        x=24,
-                        y=5,
-                    ),
-                    'xxl': Layout(
-                        h=9,
-                        w=6,
-                        x=30,
-                        y=0,
-                    ),
-                },
-            ),
-            WidgetTerms(
-                search_quantity='results.material.structural_type',
-                scale='log',
-                show_input=False,
-                layout={
-                    'lg': Layout(
-                        h=6,
-                        w=5,
-                        x=19,
-                        y=0,
-                    ),
-                    'md': Layout(
-                        h=6,
-                        w=6,
-                        x=0,
-                        y=8,
-                    ),
-                    'sm': Layout(
-                        h=5,
-                        w=6,
-                        x=6,
-                        y=8,
-                    ),
-                    'xl': Layout(
-                        h=11,
-                        w=5,
-                        x=19,
-                        y=0,
-                    ),
-                    'xxl': Layout(
-                        h=9,
-                        w=6,
-                        x=19,
-                        y=0,
-                    ),
-                },
-            ),
-            WidgetTerms(
-                search_quantity='results.method.simulation.program_name',
-                scale='log',
-                layout={
-                    'lg': Layout(
-                        h=6,
-                        w=5,
-                        x=14,
-                        y=0,
-                    ),
-                    'md': Layout(
-                        h=8,
-                        w=6,
-                        x=12,
-                        y=0,
-                    ),
-                    'sm': Layout(
-                        h=5,
-                        w=6,
-                        x=0,
-                        y=8,
-                    ),
-                    'xl': Layout(
-                        h=11,
-                        w=5,
-                        x=14,
-                        y=0,
-                    ),
-                    'xxl': Layout(
-                        h=9,
-                        w=6,
-                        x=13,
-                        y=0,
-                    ),
-                },
-            ),
-            WidgetTerms(
-                search_quantity='results.material.symmetry.crystal_system',
-                show_input=False,
-                layout={
-                    'lg': Layout(
-                        h=5,
-                        w=5,
-                        x=14,
-                        y=6,
-                    ),
-                    'md': Layout(
-                        h=6,
-                        w=6,
-                        x=6,
-                        y=8,
-                    ),
-                    'sm': Layout(
-                        h=5,
-                        w=6,
-                        x=0,
-                        y=13,
-                    ),
-                    'xl': Layout(
-                        h=5,
-                        w=6,
-                        x=24,
-                        y=0,
-                    ),
-                    'xxl': Layout(
-                        h=9,
-                        w=5,
-                        x=25,
-                        y=0,
-                    ),
-                },
-            ),
-        ],
-    ),
+    dashboard=simulations_dashboard,
     filters_locked={
         'quantities': 'results.method.simulation.program_name',
     },

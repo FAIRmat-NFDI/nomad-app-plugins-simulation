@@ -1,0 +1,53 @@
+- type: periodic_table
+  search_quantity: results.material.elements
+  scale: linear
+  layout:
+    lg: {x: 0, y: 0, w: 14, h: 11}
+    md: {x: 0, y: 0, w: 12, h: 8}
+    sm: {x: 0, y: 0, w: 12, h: 8}
+    xl: {x: 0, y: 0, w: 14, h: 11}
+    xxl: {x: 0, y: 0, w: 13, h: 9}
+- type: terms
+  search_quantity: results.material.symmetry.space_group_symbol
+  scale: linear
+  show_input: true
+  sort_static: true
+  layout:
+    lg: {x: 19, y: 6, w: 5, h: 5}
+    md: {x: 12, y: 8, w: 6, h: 6}
+    sm: {x: 6, y: 13, w: 6, h: 5}
+    xl: {x: 24, y: 5, w: 6, h: 6}
+    xxl: {x: 30, y: 0, w: 6, h: 9}
+- type: terms
+  search_quantity: results.material.structural_type
+  scale: log
+  show_input: false
+  sort_static: true
+  layout:
+    lg: {x: 19, y: 0, w: 5, h: 6}
+    md: {x: 0, y: 8, w: 6, h: 6}
+    sm: {x: 6, y: 8, w: 6, h: 5}
+    xl: {x: 19, y: 0, w: 5, h: 11}
+    xxl: {x: 19, y: 0, w: 6, h: 9}
+- type: terms
+  search_quantity: results.method.simulation.program_name
+  scale: log
+  show_input: true
+  sort_static: true
+  layout:
+    lg: {x: 14, y: 0, w: 5, h: 6}
+    md: {x: 12, y: 0, w: 6, h: 8}
+    sm: {x: 0, y: 8, w: 6, h: 5}
+    xl: {x: 14, y: 0, w: 5, h: 11}
+    xxl: {x: 13, y: 0, w: 6, h: 9}
+- type: terms
+  search_quantity: results.material.symmetry.crystal_system
+  scale: linear
+  show_input: false
+  sort_static: true
+  layout:
+    lg: {x: 14, y: 6, w: 5, h: 5}
+    md: {x: 6, y: 8, w: 6, h: 6}
+    sm: {x: 0, y: 13, w: 6, h: 5}
+    xl: {x: 24, y: 0, w: 6, h: 5}
+    xxl: {x: 25, y: 0, w: 5, h: 9}
