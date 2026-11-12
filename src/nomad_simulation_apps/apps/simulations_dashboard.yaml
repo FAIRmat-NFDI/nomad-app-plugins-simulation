@@ -11,7 +11,6 @@
   search_quantity: results.material.symmetry.space_group_symbol
   scale: linear
   show_input: true
-  sort_static: true
   layout:
     lg: {x: 19, y: 6, w: 5, h: 5}
     md: {x: 12, y: 8, w: 6, h: 6}
@@ -22,7 +21,6 @@
   search_quantity: results.material.structural_type
   scale: log
   show_input: false
-  sort_static: true
   layout:
     lg: {x: 19, y: 0, w: 5, h: 6}
     md: {x: 0, y: 8, w: 6, h: 6}
@@ -33,7 +31,6 @@
   search_quantity: results.method.simulation.program_name
   scale: log
   show_input: true
-  sort_static: true
   layout:
     lg: {x: 14, y: 0, w: 5, h: 6}
     md: {x: 12, y: 0, w: 6, h: 8}
@@ -44,7 +41,6 @@
   search_quantity: results.material.symmetry.crystal_system
   scale: linear
   show_input: false
-  sort_static: true
   layout:
     lg: {x: 14, y: 6, w: 5, h: 5}
     md: {x: 6, y: 8, w: 6, h: 6}

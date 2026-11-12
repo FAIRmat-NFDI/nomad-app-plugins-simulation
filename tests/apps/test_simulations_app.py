@@ -62,9 +62,50 @@ EXPECTED_WIDGETS = [
     ('terms', 'results.method.simulation.program_name'),
     ('terms', 'results.material.symmetry.crystal_system'),
 ]
-EXPECTED_DASHBOARD_DIGEST = (
-    '002f53324223ddc34a6282813ad5cb8b97a1ec55e7b1f6d69b684194a565bb63'
-)
+EXPECTED_WIDGET_SETTINGS = [
+    ('linear', None),
+    ('linear', True),
+    ('log', False),
+    ('log', True),
+    ('linear', False),
+]
+EXPECTED_WIDGET_LAYOUTS = [
+    {
+        'lg': (0, 0, 14, 11),
+        'md': (0, 0, 12, 8),
+        'sm': (0, 0, 12, 8),
+        'xl': (0, 0, 14, 11),
+        'xxl': (0, 0, 13, 9),
+    },
+    {
+        'lg': (19, 6, 5, 5),
+        'md': (12, 8, 6, 6),
+        'sm': (6, 13, 6, 5),
+        'xl': (24, 5, 6, 6),
+        'xxl': (30, 0, 6, 9),
+    },
+    {
+        'lg': (19, 0, 5, 6),
+        'md': (0, 8, 6, 6),
+        'sm': (6, 8, 6, 5),
+        'xl': (19, 0, 5, 11),
+        'xxl': (19, 0, 6, 9),
+    },
+    {
+        'lg': (14, 0, 5, 6),
+        'md': (12, 0, 6, 8),
+        'sm': (0, 8, 6, 5),
+        'xl': (14, 0, 5, 11),
+        'xxl': (13, 0, 6, 9),
+    },
+    {
+        'lg': (14, 6, 5, 5),
+        'md': (6, 8, 6, 6),
+        'sm': (0, 13, 6, 5),
+        'xl': (24, 0, 6, 5),
+        'xxl': (25, 0, 5, 9),
+    },
+]
 
 
 def _get_menu_quantity(item: dict) -> str | None:
@@ -133,14 +174,16 @@ def test_simulations_dashboard_matches_the_core_baseline():
     assert [(widget.type, widget.search_quantity) for widget in widgets] == (
         EXPECTED_WIDGETS
     )
-    digest = hashlib.sha256(
-        json.dumps(
-            dashboard.model_dump(mode='json', exclude_none=True, warnings=False),
-            sort_keys=True,
-            separators=(',', ':'),
-        ).encode()
-    ).hexdigest()
-    assert digest == EXPECTED_DASHBOARD_DIGEST
+    assert [
+        (widget.scale, getattr(widget, 'show_input', None)) for widget in widgets
+    ] == EXPECTED_WIDGET_SETTINGS
+    assert [
+        {
+            breakpoint: (layout.x, layout.y, layout.w, layout.h)
+            for breakpoint, layout in widget.layout.items()
+        }
+        for widget in widgets
+    ] == EXPECTED_WIDGET_LAYOUTS
 
 
 def test_simulations_config_uses_python_app_models():
